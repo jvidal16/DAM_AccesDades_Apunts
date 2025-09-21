@@ -64,18 +64,18 @@ Per a millorar l'eficiencia de la lectura, es poden carregar en memoria un nombr
 
 En la pràctica és tradueix en que una classe d'accès basic a arxiu esta *aniuada* en una classe *buffer*.
 
-'''java
+```java
 try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))){
     String line;
     while(line = br.readLine(){
         //processa
     })
 }
-'''
+```
 
 ### Exemple d'accès amb classes NIO
 
-'''java
+```java
 try (BufferedReader br = Files.newBufferedReader(
             Paths.get("src/prova1.csv")))
     {
@@ -88,13 +88,13 @@ try (BufferedReader br = Files.newBufferedReader(
     } catch (IOException e) {
         System.err.println("⚠ Error en llegir l'arxiu:" + e.getMessage());
     }
-'''
+```
 
 ### Exemple Avançat amb Stream
 
 La utilització d'Stream és una caràcterística relativament recent de Java. Permet treballar d'una manera molt diferent amb les dades.
 
-'''java
+```java
 //Processar totes les linies
 List<String> lines = Files.readAllLines(Paths.get("file.txt"));
 
@@ -102,9 +102,10 @@ List<String> lines = Files.readAllLines(Paths.get("file.txt"));
 try (Stream<String> stream = Files.lines(Paths.get("file.txt"))) {
     stream.forEach(System.out::println)
 }
-'''
+```
 
 ### Accés Seqüencial i Aleatòri
 
 La lectura d'un arxiu és per defecte seqüencial.
 Per canviar la posició de lectura dins l'arxiu utilitzem el mètodes '''skip(long n)''', que desplaça el cursor n bytes, positius o negatius.
+
